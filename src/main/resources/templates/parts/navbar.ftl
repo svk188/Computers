@@ -1,0 +1,51 @@
+<#include "security.ftl">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top mb-5">
+    <strong><a class="navbar-brand text-primary" href="/"><span style="font-size: 1.5rem;">Computer<span class="text-danger"></span></span></a></strong>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item ${activeCatalog!""}">
+                <a class="nav-link" href="/">Catalog</a>
+            </li>
+            <#if isAdmin>
+                 <li class="nav-item ${activeOrders!""}">
+                     <a class="nav-link" href="/orders">[Orders]</a>
+                 </li>
+            </#if>
+            <#if isAdmin>
+                 <li class="nav-item ${activeOrdersCompleted!""}">
+                     <a class="nav-link" href="/ordersCompleted">[Orders Completed]</a>
+                 </li>
+            </#if>
+
+        </ul>
+
+        <ul class="navbar-nav mr-5">
+            <li class="nav-item">
+                <a class="nav-link inCartLink" href="/cart">
+                    <img src="https://ylianova.ru/800/600/https/sun9-41.userapi.com/c857224/v857224409/18de4c/q3nMSlTh2iU.jpg" width="25" height="25" class="d-inline-block align-top"  alt="cart" />
+                    <h5 class="d-inline">
+                        <span class="badge badge-danger">
+                        <#if know> ${user.getInCart()} <#else>0</#if>
+                        </span>
+                    </h5>
+                </a>
+
+            </li>
+        </ul>
+
+        <div class="navbar-text mr-3">${name}</div>
+        <#if know>
+            <#include "logout.ftl">
+
+        <#else >
+            <a class="btn btn-primary" href="/indexAdmin" role="button">Log In</a>
+
+        </#if>
+
+    </div>
+</nav>
